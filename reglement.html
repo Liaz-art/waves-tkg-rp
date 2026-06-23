@@ -1,69 +1,200 @@
+Désolé. Voici **uniquement le code complet** de ta page `reglement.html`, avec l’animation de fleur au milieu qui se sépare vers les côtés.
+
+Il utilise une image nommée **`fleur.png`**. Mets donc une image de fleur dans ton dossier et renomme-la exactement :
+
+```text
+fleur.png
+```
+
+Puis remplace tout ton `reglement.html` par ceci :
+
+```html
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Reglement RP</title>
-  <style>
-    body {
-      margin: 0;
-      background: black;
-      font-family: Arial, sans-serif;
-      color: white;
+<meta charset="UTF-8">
+<title>Reglement RP</title>
+
+<style>
+body {
+    margin: 0;
+    background: black;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow-x: hidden;
+}
+
+/* NAVIGATION */
+
+nav {
+    background: #111;
+    padding: 20px;
+    border-bottom: 2px solid red;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+nav a {
+    color: red;
+    margin: 0 25px;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px red;
+}
+
+nav a:hover {
+    color: white;
+}
+
+/* FLEURS SUR LES COTES */
+
+.flower {
+    position: fixed;
+    top: 50%;
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+    z-index: 1;
+    opacity: 0;
+    filter: drop-shadow(0 0 25px red);
+    pointer-events: none;
+}
+
+.flower-left {
+    left: 25px;
+    transform: translate(-50%, -50%);
+    animation: flowerLeft 2.8s ease forwards;
+}
+
+.flower-right {
+    right: 25px;
+    transform: translate(50%, -50%);
+    animation: flowerRight 2.8s ease forwards;
+}
+
+/* BLOC REGLEMENT */
+
+.box {
+    max-width: 900px;
+    margin: 60px auto;
+    background: rgba(17, 17, 17, 0.92);
+    padding: 30px;
+    border: 2px solid red;
+    border-radius: 15px;
+    box-shadow: 0 0 20px red;
+    position: relative;
+    z-index: 5;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+    font-size: 50px;
+    text-shadow: 0 0 15px red;
+}
+
+h2 {
+    color: red;
+    margin-top: 30px;
+}
+
+p, li {
+    font-size: 18px;
+    line-height: 1.6;
+}
+
+.intro {
+    text-align: center;
+    color: #ddd;
+    margin-bottom: 25px;
+}
+
+hr {
+    border: 1px solid red;
+    margin: 25px 0;
+}
+
+strong {
+    color: red;
+}
+
+/* ANIMATION DES FLEURS */
+
+@keyframes flowerLeft {
+    0% {
+        left: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
     }
 
-    nav {
-      background: #111;
-      padding: 20px;
-      border-bottom: 2px solid red;
-      text-align: center;
+    45% {
+        left: 50%;
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1) rotate(180deg);
     }
 
-    nav a {
-      color: red;
-      margin: 0 25px;
-      text-decoration: none;
-      font-size: 20px;
-      font-weight: bold;
-      text-shadow: 0 0 10px red;
+    100% {
+        left: 25px;
+        opacity: 0.85;
+        transform: translate(0, -50%) scale(1) rotate(360deg);
+    }
+}
+
+@keyframes flowerRight {
+    0% {
+        right: 50%;
+        opacity: 1;
+        transform: translate(50%, -50%) scale(0.4) rotate(0deg);
+    }
+
+    45% {
+        right: 50%;
+        opacity: 1;
+        transform: translate(50%, -50%) scale(1.1) rotate(-180deg);
+    }
+
+    100% {
+        right: 25px;
+        opacity: 0.85;
+        transform: translate(0, -50%) scale(1) rotate(-360deg);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width: 1100px) {
+    .flower {
+        opacity: 0.25;
+        width: 160px;
+        height: 160px;
     }
 
     .box {
-      max-width: 900px;
-      margin: 60px auto;
-      background: #111;
-      padding: 30px;
-      border: 2px solid red;
-      border-radius: 15px;
-      box-shadow: 0 0 20px red;
+        margin: 40px 15px;
     }
 
-    h1 {
-      color: red;
-      text-align: center;
-      font-size: 50px;
-      text-shadow: 0 0 15px red;
+    nav a {
+        display: inline-block;
+        margin: 10px;
     }
-
-    h2 {
-      color: red;
-      margin-top: 30px;
-    }
-
-    p, li {
-      font-size: 18px;
-      line-height: 1.6;
-    }
-  </style>
+}
+</style>
 </head>
+
 <body>
 
-  <nav>
+<img src="fleur.png" class="flower flower-left" alt="Fleur gauche">
+<img src="fleur.png" class="flower flower-right" alt="Fleur droite">
+
+<nav>
     <a href="index.html">Accueil</a>
     <a href="reglement.html">Règlement</a>
     <a href="lore.html">Lore</a>
-    <a href="discord.html">Discord</a>
+    <a href="https://discord.gg/nQKE6f7ZTu" target="_blank">Discord</a>
     <a href="commandes.html">Commandes</a>
-  </nav>
+</nav>
 
 <div class="box">
 
@@ -281,3 +412,7 @@ Gagner n'est jamais plus important que le rôleplay.
 <p><strong>Bon jeu sur Waves TKG RP ! 🩸</strong></p>
 
 </div>
+
+</body>
+</html>
+```
