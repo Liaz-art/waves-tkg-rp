@@ -5,223 +5,231 @@
 <title>Reglement RP</title>
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    background: black;
-    font-family: Arial, sans-serif;
-    color: white;
-    overflow-x: hidden;
+body{
+    background:black;
+    font-family:Arial,sans-serif;
+    color:white;
+    overflow-x:hidden;
 }
 
 /* INTRO FLEUR */
 
-#flower-intro {
-    position: fixed;
-    inset: 0;
-    background: black;
-    z-index: 9999;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    animation: introOut 1s ease forwards;
-    animation-delay: 3.2s;
+#flower-intro{
+    position:fixed;
+    inset:0;
+    background:black;
+    z-index:99999;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    animation:introDisappear 1s ease forwards;
+    animation-delay:5s;
 }
 
-.intro-flower {
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 30px red);
+.intro-flower{
+    position:absolute;
+    width:450px;
+    height:450px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 30px red);
 }
 
-.flower-a {
-    animation: flowerLeft 3s ease forwards;
+.flower-left-intro{
+    animation:splitLeft 5s ease forwards;
 }
 
-.flower-b {
-    animation: flowerRight 3s ease forwards;
+.flower-right-intro{
+    animation:splitRight 5s ease forwards;
 }
 
-/* SITE CACHE AU DEBUT */
-
-#page-content {
-    opacity: 0;
-    animation: showContent 1s ease forwards;
-    animation-delay: 3.4s;
+#page-content{
+    opacity:0;
+    animation:pageAppear 1s ease forwards;
+    animation-delay:5.2s;
 }
 
-/* FLEURS SUR LES COTES */
+/* FLEURS COTES */
 
-.side-flower {
-    position: fixed;
-    top: 50%;
-    width: 260px;
-    height: 260px;
-    object-fit: contain;
-    filter: drop-shadow(0 0 25px red);
-    opacity: 0.75;
-    z-index: 1;
-    pointer-events: none;
+.side-flower{
+    position:fixed;
+    top:50%;
+    width:250px;
+    height:250px;
+    object-fit:contain;
+    filter:drop-shadow(0 0 25px red);
+    opacity:0.85;
+    z-index:1;
+    pointer-events:none;
 }
 
-.left-side {
-    left: 25px;
-    transform: translateY(-50%);
+.left-side{
+    left:20px;
+    transform:translateY(-50%);
 }
 
-.right-side {
-    right: 25px;
-    transform: translateY(-50%);
+.right-side{
+    right:20px;
+    transform:translateY(-50%);
 }
 
 /* NAV */
 
-nav {
-    background: #111;
-    padding: 20px;
-    border-bottom: 2px solid red;
-    text-align: center;
-    position: relative;
-    z-index: 10;
+nav{
+    background:#111;
+    padding:20px;
+    border-bottom:2px solid red;
+    text-align:center;
+    position:relative;
+    z-index:10;
 }
 
-nav a {
-    color: red;
-    margin: 0 25px;
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: bold;
-    text-shadow: 0 0 10px red;
+nav a{
+    color:red;
+    margin:0 25px;
+    text-decoration:none;
+    font-size:20px;
+    font-weight:bold;
+    text-shadow:0 0 10px red;
 }
 
-nav a:hover {
-    color: white;
+nav a:hover{
+    color:white;
 }
 
-/* BLOC REGLEMENT */
+/* REGLEMENT */
 
-.box {
-    max-width: 900px;
-    margin: 60px auto;
-    background: rgba(17, 17, 17, 0.94);
-    padding: 30px;
-    border: 2px solid red;
-    border-radius: 15px;
-    box-shadow: 0 0 20px red;
-    position: relative;
-    z-index: 5;
+.box{
+    max-width:900px;
+    margin:60px auto;
+    background:rgba(17,17,17,0.94);
+    padding:30px;
+    border:2px solid red;
+    border-radius:15px;
+    box-shadow:0 0 20px red;
+    position:relative;
+    z-index:5;
 }
 
-h1 {
-    color: red;
-    text-align: center;
-    font-size: 50px;
-    text-shadow: 0 0 15px red;
+h1{
+    color:red;
+    text-align:center;
+    font-size:50px;
+    text-shadow:0 0 15px red;
 }
 
-h2 {
-    color: red;
-    margin-top: 30px;
+h2{
+    color:red;
+    margin-top:30px;
 }
 
-p, li {
-    font-size: 18px;
-    line-height: 1.6;
+p, li{
+    font-size:18px;
+    line-height:1.6;
 }
 
-ul {
-    margin-left: 25px;
+ul{
+    margin-left:25px;
 }
 
-.intro {
-    text-align: center;
-    color: #ddd;
-    margin-bottom: 25px;
+.intro{
+    text-align:center;
+    color:#ddd;
+    margin-bottom:25px;
 }
 
-hr {
-    border: 1px solid red;
-    margin: 25px 0;
+hr{
+    border:1px solid red;
+    margin:25px 0;
 }
 
-strong {
-    color: red;
+strong{
+    color:red;
 }
 
 /* ANIMATIONS */
 
-@keyframes flowerLeft {
-    0% {
-        transform: translateX(0) scale(1);
-        opacity: 1;
+@keyframes splitLeft{
+    0%{
+        opacity:0;
+        transform:scale(0.5);
     }
 
-    45% {
-        transform: translateX(0) scale(1.15);
-        opacity: 1;
+    20%{
+        opacity:1;
+        transform:scale(1.2);
     }
 
-    100% {
-        transform: translateX(-43vw) scale(0.65) rotate(-360deg);
-        opacity: 0.85;
-    }
-}
-
-@keyframes flowerRight {
-    0% {
-        transform: translateX(0) scale(1);
-        opacity: 1;
+    60%{
+        opacity:1;
+        transform:scale(1);
     }
 
-    45% {
-        transform: translateX(0) scale(1.15);
-        opacity: 1;
-    }
-
-    100% {
-        transform: translateX(43vw) scale(0.65) rotate(360deg);
-        opacity: 0.85;
+    100%{
+        opacity:0.9;
+        transform:translateX(-43vw) scale(0.7) rotate(-360deg);
     }
 }
 
-@keyframes introOut {
-    to {
-        opacity: 0;
-        visibility: hidden;
+@keyframes splitRight{
+    0%{
+        opacity:0;
+        transform:scale(0.5);
+    }
+
+    20%{
+        opacity:1;
+        transform:scale(1.2);
+    }
+
+    60%{
+        opacity:1;
+        transform:scale(1);
+    }
+
+    100%{
+        opacity:0.9;
+        transform:translateX(43vw) scale(0.7) rotate(360deg);
     }
 }
 
-@keyframes showContent {
-    to {
-        opacity: 1;
+@keyframes introDisappear{
+    to{
+        opacity:0;
+        visibility:hidden;
     }
 }
 
-@media(max-width: 900px) {
-    .intro-flower {
-        width: 260px;
-        height: 260px;
+@keyframes pageAppear{
+    to{
+        opacity:1;
+    }
+}
+
+@media(max-width:900px){
+    .intro-flower{
+        width:280px;
+        height:280px;
     }
 
-    .side-flower {
-        width: 120px;
-        height: 120px;
-        opacity: 0.3;
+    .side-flower{
+        width:120px;
+        height:120px;
+        opacity:0.25;
     }
 
-    .box {
-        margin: 40px 15px;
+    .box{
+        margin:40px 15px;
     }
 
-    nav a {
-        display: inline-block;
-        margin: 10px;
+    nav a{
+        display:inline-block;
+        margin:10px;
     }
 }
 </style>
@@ -230,8 +238,8 @@ strong {
 <body>
 
 <div id="flower-intro">
-    <img src="fleur.png" class="intro-flower flower-a" alt="Fleur gauche">
-    <img src="fleur.png" class="intro-flower flower-b" alt="Fleur droite">
+    <img src="fleur.png" class="intro-flower flower-left-intro" alt="Fleur gauche">
+    <img src="fleur.png" class="intro-flower flower-right-intro" alt="Fleur droite">
 </div>
 
 <div id="page-content">
