@@ -5,15 +5,82 @@
 <title>Reglement RP</title>
 
 <style>
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     background: black;
     font-family: Arial, sans-serif;
     color: white;
     overflow-x: hidden;
 }
 
-/* NAVIGATION */
+/* INTRO FLEUR */
+
+#flower-intro {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: introOut 1s ease forwards;
+    animation-delay: 3.2s;
+}
+
+.intro-flower {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 30px red);
+}
+
+.flower-a {
+    animation: flowerLeft 3s ease forwards;
+}
+
+.flower-b {
+    animation: flowerRight 3s ease forwards;
+}
+
+/* SITE CACHE AU DEBUT */
+
+#page-content {
+    opacity: 0;
+    animation: showContent 1s ease forwards;
+    animation-delay: 3.4s;
+}
+
+/* FLEURS SUR LES COTES */
+
+.side-flower {
+    position: fixed;
+    top: 50%;
+    width: 260px;
+    height: 260px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 25px red);
+    opacity: 0.75;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.left-side {
+    left: 25px;
+    transform: translateY(-50%);
+}
+
+.right-side {
+    right: 25px;
+    transform: translateY(-50%);
+}
+
+/* NAV */
 
 nav {
     background: #111;
@@ -37,38 +104,12 @@ nav a:hover {
     color: white;
 }
 
-/* FLEURS SUR LES COTES */
-
-.flower {
-    position: fixed;
-    top: 50%;
-    width: 260px;
-    height: 260px;
-    object-fit: contain;
-    z-index: 1;
-    opacity: 0;
-    filter: drop-shadow(0 0 25px red);
-    pointer-events: none;
-}
-
-.flower-left {
-    left: 25px;
-    transform: translate(-50%, -50%);
-    animation: flowerLeft 2.8s ease forwards;
-}
-
-.flower-right {
-    right: 25px;
-    transform: translate(50%, -50%);
-    animation: flowerRight 2.8s ease forwards;
-}
-
 /* BLOC REGLEMENT */
 
 .box {
     max-width: 900px;
     margin: 60px auto;
-    background: rgba(17, 17, 17, 0.92);
+    background: rgba(17, 17, 17, 0.94);
     padding: 30px;
     border: 2px solid red;
     border-radius: 15px;
@@ -94,6 +135,10 @@ p, li {
     line-height: 1.6;
 }
 
+ul {
+    margin-left: 25px;
+}
+
 .intro {
     text-align: center;
     color: #ddd;
@@ -109,55 +154,65 @@ strong {
     color: red;
 }
 
-/* ANIMATION DES FLEURS */
+/* ANIMATIONS */
 
 @keyframes flowerLeft {
     0% {
-        left: 50%;
+        transform: translateX(0) scale(1);
         opacity: 1;
-        transform: translate(-50%, -50%) scale(0.4) rotate(0deg);
     }
 
     45% {
-        left: 50%;
+        transform: translateX(0) scale(1.15);
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1.1) rotate(180deg);
     }
 
     100% {
-        left: 25px;
+        transform: translateX(-43vw) scale(0.65) rotate(-360deg);
         opacity: 0.85;
-        transform: translate(0, -50%) scale(1) rotate(360deg);
     }
 }
 
 @keyframes flowerRight {
     0% {
-        right: 50%;
+        transform: translateX(0) scale(1);
         opacity: 1;
-        transform: translate(50%, -50%) scale(0.4) rotate(0deg);
     }
 
     45% {
-        right: 50%;
+        transform: translateX(0) scale(1.15);
         opacity: 1;
-        transform: translate(50%, -50%) scale(1.1) rotate(-180deg);
     }
 
     100% {
-        right: 25px;
+        transform: translateX(43vw) scale(0.65) rotate(360deg);
         opacity: 0.85;
-        transform: translate(0, -50%) scale(1) rotate(-360deg);
     }
 }
 
-/* MOBILE */
+@keyframes introOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
 
-@media(max-width: 1100px) {
-    .flower {
-        opacity: 0.25;
-        width: 160px;
-        height: 160px;
+@keyframes showContent {
+    to {
+        opacity: 1;
+    }
+}
+
+@media(max-width: 900px) {
+    .intro-flower {
+        width: 260px;
+        height: 260px;
+    }
+
+    .side-flower {
+        width: 120px;
+        height: 120px;
+        opacity: 0.3;
     }
 
     .box {
@@ -174,8 +229,15 @@ strong {
 
 <body>
 
-<img src="fleur.png" class="flower flower-left">
-<img src="fleur.png" class="flower flower-right">
+<div id="flower-intro">
+    <img src="fleur.png" class="intro-flower flower-a" alt="Fleur gauche">
+    <img src="fleur.png" class="intro-flower flower-b" alt="Fleur droite">
+</div>
+
+<div id="page-content">
+
+<img src="fleur.png" class="side-flower left-side" alt="Fleur gauche">
+<img src="fleur.png" class="side-flower right-side" alt="Fleur droite">
 
 <nav>
     <a href="index.html">Accueil</a>
@@ -197,7 +259,6 @@ Le non-respect des règles peut entraîner des sanctions.
 <hr>
 
 <h2>1. Respect et comportement</h2>
-
 <p>
 Le respect entre tous les joueurs est obligatoire.
 Les insultes, provocations excessives, discriminations ou harcèlement sont interdits.
@@ -208,11 +269,9 @@ Toute tentative de contourner une sanction entraînera une sanction plus lourde.
 <h2>🎭 Règlement RolePlay</h2>
 
 <h2>2. No Fear RP</h2>
-
 <p>Vous devez tenir à la vie de votre personnage.</p>
 
 <strong>Interdit :</strong>
-
 <ul>
 <li>Foncer seul contre plusieurs adversaires armés.</li>
 <li>Ignorer une menace évidente.</li>
@@ -220,13 +279,11 @@ Toute tentative de contourner une sanction entraînera une sanction plus lourde.
 </ul>
 
 <strong>Autorisé :</strong>
-
 <ul>
 <li>Prendre des risques raisonnables si votre personnage possède une bonne raison RP.</li>
 </ul>
 
 <h2>3. Pain RP</h2>
-
 <p>
 Votre personnage ressent la douleur.
 Une blessure grave doit être jouée.
@@ -235,87 +292,61 @@ Les blessures ne disparaissent pas instantanément.
 </p>
 
 <h2>4. Mass RP</h2>
-
 <p>Vous devez prendre en compte la présence potentielle de la population.</p>
-
 <ul>
 <li>Éviter les massacres en pleine rue sans conséquence.</li>
 <li>Éviter les enlèvements ou exécutions dans des lieux fréquentés.</li>
 </ul>
 
 <h2>5. MetaGaming</h2>
-
-<p>
-Utiliser des informations obtenues hors RP dans le RP est strictement interdit.
-</p>
-
+<p>Utiliser des informations obtenues hors RP dans le RP est strictement interdit.</p>
 <ul>
 <li>Utiliser Discord pour localiser un joueur.</li>
 <li>Reconnaître quelqu'un grâce à son pseudo.</li>
 </ul>
 
 <h2>6. PowerGaming</h2>
-
-<p>
-Forcer une action RP sans laisser de possibilité de réponse est interdit.
-</p>
-
-<p>
-Exemple : /me casse le bras de X sans possibilité de réaction.
-</p>
+<p>Forcer une action RP sans laisser de possibilité de réponse est interdit.</p>
+<p>Exemple : /me casse le bras de X sans possibilité de réaction.</p>
 
 <h2>7. FreeKill (FK)</h2>
-
 <p>
 Tuer un joueur sans raison RP valable est interdit.
 Chaque action violente doit avoir une justification RP cohérente.
 </p>
 
 <h2>8. Revenge Kill</h2>
-
 <p>
 Après votre mort RP, vous ne pouvez pas revenir vous venger.
 Votre personnage oublie les événements ayant conduit à sa mort.
 </p>
 
 <h2>9. Combat Logging</h2>
-
-<p>
-Se déconnecter pour éviter une action RP ou une mort est interdit.
-</p>
+<p>Se déconnecter pour éviter une action RP ou une mort est interdit.</p>
 
 <h2>🩸 Règlement spécifique Tokyo Ghoul</h2>
 
 <h2>10. Les Goules</h2>
-
 <ul>
 <li>Jouer une goule de manière discrète.</li>
 <li>Préserver son identité autant que possible.</li>
 <li>Se nourrir régulièrement selon les systèmes du serveur.</li>
-</ul>
-
-<ul>
-<li>Révéler sa nature sans raison RP.</li>
-<li>Attaquer tout le monde sans objectif RP.</li>
-<li>Utiliser son Kagune en zone sécurisée sans justification.</li>
+<li>Révéler sa nature sans raison RP est interdit.</li>
+<li>Attaquer tout le monde sans objectif RP est interdit.</li>
+<li>Utiliser son Kagune en zone sécurisée sans justification est interdit.</li>
 </ul>
 
 <h2>11. Les Inspecteurs du CCG</h2>
-
 <ul>
 <li>Respecter la hiérarchie du CCG.</li>
 <li>Mener des enquêtes avant toute opération importante.</li>
 <li>Agir conformément aux procédures RP.</li>
-</ul>
-
-<ul>
-<li>Abuser de son autorité.</li>
-<li>Effectuer des arrestations sans raison RP.</li>
-<li>Tirer à vue sans justification.</li>
+<li>Abuser de son autorité est interdit.</li>
+<li>Effectuer des arrestations sans raison RP est interdit.</li>
+<li>Tirer à vue sans justification est interdit.</li>
 </ul>
 
 <h2>12. Organisation et Factions</h2>
-
 <p>
 Toute faction doit avoir un objectif RP.
 Les guerres entre factions doivent être justifiées.
@@ -325,21 +356,18 @@ Les alliances doivent rester cohérentes avec le lore.
 <h2>⚔️ Règlement des combats</h2>
 
 <h2>13. Initiation RP</h2>
-
 <ul>
 <li>Une initiation claire doit être réalisée.</li>
 <li>La victime doit comprendre la menace.</li>
 </ul>
 
 <h2>14. New Life Rule (NLR)</h2>
-
 <ul>
 <li>Interdiction de retourner sur la scène pendant 15 minutes.</li>
 <li>Interdiction d'utiliser les informations liées à votre mort.</li>
 </ul>
 
 <h2>15. Raid et Assauts</h2>
-
 <p>
 Toute attaque majeure doit être préparée RP.
 Les raids abusifs sont interdits.
@@ -349,7 +377,6 @@ Les deux camps doivent pouvoir jouer la scène.
 <h2>🏢 Zones</h2>
 
 <p><strong>Zone Safe :</strong></p>
-
 <ul>
 <li>Interdiction d'utiliser des armes.</li>
 <li>Interdiction d'utiliser un Kagune.</li>
@@ -358,15 +385,10 @@ Les deux camps doivent pouvoir jouer la scène.
 </ul>
 
 <p><strong>Zone RP :</strong></p>
-
-<p>
-Toutes les actions RP sont autorisées dans le respect du règlement.
-</p>
+<p>Toutes les actions RP sont autorisées dans le respect du règlement.</p>
 
 <h2>👤 Nom RP</h2>
-
 <p>Le nom RP doit être réaliste.</p>
-
 <ul>
 <li>❌ Naruto Uzumaki</li>
 <li>❌ Dark Sasuke</li>
@@ -374,7 +396,6 @@ Toutes les actions RP sont autorisées dans le respect du règlement.
 </ul>
 
 <h2>🔊 Vocal RP</h2>
-
 <ul>
 <li>Utilisez votre micro de façon RP.</li>
 <li>Les soundboards abusifs sont interdits.</li>
@@ -382,7 +403,6 @@ Toutes les actions RP sont autorisées dans le respect du règlement.
 </ul>
 
 <h2>⚖️ Sanctions</h2>
-
 <ul>
 <li>Avertissement</li>
 <li>Warn</li>
@@ -392,7 +412,6 @@ Toutes les actions RP sont autorisées dans le respect du règlement.
 </ul>
 
 <h2>📖 Règle d'Or</h2>
-
 <p>
 Jouez pour créer une histoire et du plaisir RP pour tous les joueurs.
 Gagner n'est jamais plus important que le rôleplay.
@@ -402,6 +421,7 @@ Gagner n'est jamais plus important que le rôleplay.
 
 </div>
 
+</div>
+
 </body>
 </html>
-```
