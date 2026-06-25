@@ -14,9 +14,12 @@
 
 body{
     background:
-    radial-gradient(circle at 80% 20%, rgba(255,0,0,0.15), transparent 25%),
-    radial-gradient(circle at 20% 80%, rgba(255,0,0,0.08), transparent 25%),
-    #000;
+        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.75)),
+        url("fond.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    background-attachment:fixed;
     color:white;
     font-family:Arial,sans-serif;
     overflow-x:hidden;
@@ -42,10 +45,7 @@ body{
     font-size:90px;
     text-align:center;
     font-family:Georgia, serif;
-    text-shadow:
-    0 0 10px red,
-    0 0 30px red,
-    0 0 60px red;
+    text-shadow:0 0 10px red, 0 0 30px red, 0 0 60px red;
     animation:introZoom 2s ease forwards;
 }
 
@@ -61,7 +61,7 @@ nav{
     align-items:center;
     padding:20px 60px;
     border-bottom:2px solid red;
-    background:rgba(5,5,5,0.95);
+    background:rgba(5,5,5,0.92);
     position:sticky;
     top:0;
     z-index:100;
@@ -104,8 +104,9 @@ nav{
     padding:35px;
     border:2px solid red;
     border-radius:12px;
-    background:rgba(0,0,0,0.75);
-    box-shadow:0 0 20px rgba(255,0,0,0.4);
+    background:rgba(0,0,0,0.78);
+    box-shadow:0 0 20px rgba(255,0,0,0.6);
+    backdrop-filter:blur(3px);
 }
 
 .panel h2{
@@ -118,9 +119,7 @@ nav{
     color:red;
     font-size:75px;
     font-family:Georgia, serif;
-    text-shadow:
-    0 0 15px red,
-    0 0 30px red;
+    text-shadow:0 0 15px red, 0 0 30px red;
     margin-bottom:25px;
 }
 
@@ -153,7 +152,7 @@ nav{
     border-radius:8px;
     padding:15px;
     text-align:center;
-    background:#070707;
+    background:rgba(7,7,7,0.9);
 }
 
 .feature-icon{
@@ -192,7 +191,7 @@ nav{
     flex:1;
     border:1px solid rgba(255,0,0,0.5);
     border-radius:8px;
-    background:#080808;
+    background:rgba(8,8,8,0.9);
     padding:15px;
     transition:0.3s;
 }
@@ -226,10 +225,7 @@ nav{
     border-radius:50%;
     object-fit:cover;
     border:4px solid red;
-    box-shadow:
-    0 0 25px red,
-    0 0 70px rgba(255,0,0,0.9),
-    inset 0 0 40px rgba(255,0,0,0.6);
+    box-shadow:0 0 25px red, 0 0 70px rgba(255,0,0,0.9);
     animation:float 4s ease-in-out infinite;
 }
 
@@ -240,70 +236,31 @@ footer{
 }
 
 @keyframes float{
-    0%,100%{
-        transform:translateY(0);
-    }
-
-    50%{
-        transform:translateY(-12px);
-    }
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-12px);}
 }
 
 @keyframes introZoom{
-    0%{
-        opacity:0;
-        transform:scale(0.6);
-    }
-
-    100%{
-        opacity:1;
-        transform:scale(1);
-    }
+    0%{opacity:0;transform:scale(0.6);}
+    100%{opacity:1;transform:scale(1);}
 }
 
 @keyframes introFadeOut{
-    to{
-        opacity:0;
-        visibility:hidden;
-    }
+    to{opacity:0;visibility:hidden;}
 }
 
 @keyframes siteAppear{
-    to{
-        opacity:1;
-    }
+    to{opacity:1;}
 }
 
 @media(max-width:1100px){
-    .accueil{
-        flex-direction:column;
-    }
-
-    .logo-sphere{
-        width:320px;
-        height:320px;
-    }
-
-    .features{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .founders{
-        flex-direction:column;
-    }
-
-    nav{
-        flex-direction:column;
-        gap:20px;
-    }
-
-    .menu a{
-        margin:10px;
-    }
-
-    .intro-title{
-        font-size:55px;
-    }
+    .accueil{flex-direction:column;}
+    .logo-sphere{width:320px;height:320px;}
+    .features{grid-template-columns:repeat(2,1fr);}
+    .founders{flex-direction:column;}
+    nav{flex-direction:column;gap:20px;}
+    .menu a{margin:10px;}
+    .intro-title{font-size:55px;}
 }
 </style>
 </head>
@@ -320,9 +277,7 @@ footer{
 <div id="site">
 
 <nav>
-    <div class="logo">
-        WAVES TKG RP
-    </div>
+    <div class="logo">WAVES TKG RP</div>
 
     <div class="menu">
         <a href="index.html">Accueil</a>
@@ -336,44 +291,42 @@ footer{
 <section class="accueil">
 
     <div class="panel">
-
         <h2>BIENVENUE SUR</h2>
-
         <h1>WAVES TKG RP</h1>
 
         <div class="separator"></div>
 
         <p>
-            Un serveur dedie à l'univers
+            Un serveur dedie a l'univers
             <span>Tokyo Ghoul</span>
             sur Garry's Mod.
         </p>
 
         <p>
-            Rejoins une expérience RP immersive inspirée de Tokyo Ghoul.
-            Développe ton personnage, rejoins une faction, participe aux événements
+            Rejoins une experience RP immersive inspiree de Tokyo Ghoul.
+            Developpe ton personnage, rejoins une faction, participe aux evenements
             et ecris ta propre histoire dans un univers sombre ou humains et goules
             s'affrontent pour survivre.
         </p>
 
         <div class="features">
             <div class="feature">
-                <div class="feature-icon">🛡️</div>
-                RP Sérieux
+                <div class="feature-icon">RP</div>
+                Serieux
             </div>
 
             <div class="feature">
-                <div class="feature-icon">👥</div>
+                <div class="feature-icon">+</div>
                 Communaute
             </div>
 
             <div class="feature">
-                <div class="feature-icon">⚔️</div>
+                <div class="feature-icon">X</div>
                 Factions
             </div>
 
             <div class="feature">
-                <div class="feature-icon">💀</div>
+                <div class="feature-icon">!</div>
                 Events
             </div>
         </div>
@@ -398,7 +351,6 @@ footer{
                 <div class="founder-role">Co Fondateur</div>
             </div>
         </div>
-
     </div>
 
     <div class="logo-zone">
@@ -408,7 +360,7 @@ footer{
 </section>
 
 <footer>
-© 2026 Waves TKG RP • Tous droits reserves
+2026 Waves TKG RP - Tous droits reserves
 </footer>
 
 </div>
